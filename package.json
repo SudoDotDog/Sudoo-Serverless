@@ -1,0 +1,40 @@
+{
+  "name": "@sudoo/serverless",
+  "version": "1.0.0",
+  "description": "Serverless Builder",
+  "bin": {
+    "sudoo-serverless-build": "cli"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SudoDotDog/Sudoo-Serverless.git"
+  },
+  "author": "WMXPY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SudoDotDog/Sudoo-Serverless/issues"
+  },
+  "homepage": "https://github.com/SudoDotDog/Sudoo-Serverless#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@sudoo/triforce": "^3.7.0"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "instrument": true,
+    "reporter": [
+      "json",
+      "text-summary"
+    ],
+    "report-dir": "coverage",
+    "sourceMap": true
+  }
+}
