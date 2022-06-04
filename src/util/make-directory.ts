@@ -24,19 +24,45 @@ export const splitNestedPath = (path: string): string[] => {
     return stepPaths;
 };
 
-export const makeNestedDirectory = (path: string): Promise<void> => {
+const makeDirectory = (path: string): Promise<void> => {
 
     return new Promise((
         resolve: () => void,
         reject: (reason: any) => void,
     ) => {
 
-        const stepPaths: string[] = splitNestedPath(path);
+        Fs.stat(path, (error: Error, stats: Fs.Stats) => {
 
-        for (const stepPath of stepPaths) {
-            if (!Fs.existsSync(stepPath)) {
-                Fs.mkdirSync(stepPath);
+            if (error) {
+                reject(error);
+                return;
             }
-        }
+
+            if (stats.isDirectory()) {
+                resolve();
+                return;
+            }
+
+            Fs.mkdir(path, (error: Error) => {
+
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                resolve();
+                return;
+            });
+        });
     });
+};
+
+export const makeNestedDirectory = async (path: string): Promise<void> => {
+
+    const stepPaths: string[] = splitNestedPath(path);
+
+    for (const stepPath of stepPaths) {
+        await makeDirectory(stepPath);
+    }
+
+    return;
 };
