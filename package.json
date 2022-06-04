@@ -18,9 +18,15 @@
     "url": "https://github.com/SudoDotDog/Sudoo-Serverless/issues"
   },
   "homepage": "https://github.com/SudoDotDog/Sudoo-Serverless#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@sudoo/log": "^1.7.0",
+    "ts-loader": "^9.3.0",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
+  },
   "devDependencies": {
-    "@sudoo/triforce": "^3.7.0"
+    "@sudoo/triforce": "^3.7.0",
+    "@types/webpack": "^5.28.0"
   },
   "nyc": {
     "extension": [
