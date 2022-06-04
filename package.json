@@ -22,7 +22,8 @@
     "@sudoo/log": "^1.7.0",
     "ts-loader": "^9.3.0",
     "webpack": "^5.73.0",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "yaml": "^2.1.1"
   },
   "devDependencies": {
     "@sudoo/triforce": "^3.7.0",
