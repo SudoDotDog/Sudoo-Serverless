@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Serverless_Webpack
+ * @namespace Serverless_Webpack_Config
  * @description Production
  */
 
