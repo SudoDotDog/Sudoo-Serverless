@@ -5,9 +5,10 @@
  */
 
 import * as ChildProcess from "child_process";
+import { makeNestedDirectory } from "../util/make-directory";
 import { ZipOutputOptions, ZipOutputResult } from "./declare";
 
-export const zipOutput = (options: ZipOutputOptions): Promise<ZipOutputResult> => {
+const spawnZipOutput = (options: ZipOutputOptions): Promise<ZipOutputResult> => {
 
     return new Promise((
         resolve: (result: ZipOutputResult) => void,
@@ -28,4 +29,11 @@ export const zipOutput = (options: ZipOutputOptions): Promise<ZipOutputResult> =
             }
         });
     });
+};
+
+export const zipOutput = async (options: ZipOutputOptions): Promise<ZipOutputResult> => {
+
+    await makeNestedDirectory(options.targetFilePath);
+
+    return await spawnZipOutput(options);
 };

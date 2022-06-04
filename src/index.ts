@@ -4,6 +4,9 @@
  * @description Index
  */
 
+export * from "./declare";
+export * from "./recipe/bundle";
+export * from "./util/make-directory";
 export * from "./webpack/config/declare";
 export * from "./webpack/config/production";
 export * from "./zip/declare";
