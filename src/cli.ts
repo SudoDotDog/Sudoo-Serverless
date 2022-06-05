@@ -4,15 +4,21 @@
  * @description CLI
  */
 
+import * as Path from "path";
 import { ExecuteOption } from "./declare";
 import { bundleRecipe } from "./recipe/bundle";
 import { logInfo } from "./util/log";
 
 export const execute = async (args: string[]): Promise<void> => {
 
+    const currentPath: string = Path.resolve(process.cwd());
+    const currentConfigPath: string = Path.join(currentPath, 'serverless.yaml');
+
     const options: ExecuteOption = {
 
         only: false,
+
+        configPath: currentConfigPath,
     };
 
     const commands: string[] = args.slice(2);
@@ -31,6 +37,17 @@ export const execute = async (args: string[]): Promise<void> => {
 
             switch (command) {
 
+                case '--config': {
+
+                    logInfo(`OPTION - Use config path: ${commands[i + 1]}`);
+                    if (commands.length > i + 1) {
+
+                        i++;
+                        const targetConfigPath: string = Path.resolve(commands[i]);
+                        options.configPath = targetConfigPath;
+                    }
+                    break;
+                }
                 case '--only': {
 
                     logInfo(`OPTION - Run target without dependencies`);

@@ -7,4 +7,6 @@
 export type ExecuteOption = {
 
     only: boolean;
+
+    configPath: string;
 };
