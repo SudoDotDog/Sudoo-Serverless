@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/SudoDotDog/Sudoo-Serverless#readme",
   "dependencies": {
+    "@sudoo/io": "^1.8.0",
     "@sudoo/log": "^1.7.0",
     "@sudoo/uuid": "^1.1.0",
     "ts-loader": "^9.3.0",
