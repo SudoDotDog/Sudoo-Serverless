@@ -6,7 +6,7 @@
 
 export enum ServerlessConfigFunctionTypeVersion1 {
 
-    AWS_LAMBDA = 'aws_lambda',
+    AWS_LAMBDA = 'aws-lambda',
 }
 
 export type ServerlessConfigFunctionVersion1 = {

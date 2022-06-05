@@ -9,9 +9,12 @@ import { ExecuteOption } from "./declare";
 import { bundleRecipe } from "./recipe/bundle";
 import { logInfo } from "./util/log";
 
-export const execute = async (args: string[]): Promise<void> => {
+export const execute = async (
+    args: string[],
+    base: string = process.cwd(),
+): Promise<void> => {
 
-    const currentPath: string = Path.resolve(process.cwd());
+    const currentPath: string = Path.resolve(base);
     const currentConfigPath: string = Path.join(currentPath, 'serverless.yaml');
 
     const options: ExecuteOption = {
@@ -67,6 +70,11 @@ export const execute = async (args: string[]): Promise<void> => {
                         i++;
                         target = commands[i];
                     }
+
+                    if (typeof target === 'undefined') {
+                        throw new Error('Target not specified');
+                    }
+
                     await bundleRecipe(options, target);
                     break;
                 }
