@@ -11,9 +11,9 @@ import { execute } from "../../src/cli";
     await execute([
         'node',
         'path',
-        'bundle',
-        'first',
         '--config',
         'config.yaml',
+        'bundle',
+        'first',
     ], __dirname);
 })();

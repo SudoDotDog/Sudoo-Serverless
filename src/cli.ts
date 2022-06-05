@@ -46,7 +46,9 @@ export const execute = async (
                     if (commands.length > i + 1) {
 
                         i++;
-                        const targetConfigPath: string = Path.resolve(commands[i]);
+                        const targetConfigPath: string = Path.resolve(
+                            Path.join(base, commands[i]),
+                        );
                         options.configPath = targetConfigPath;
                     }
                     break;
