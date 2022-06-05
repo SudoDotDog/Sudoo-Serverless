@@ -5,9 +5,10 @@
  */
 
 import { ServerlessConfig } from "../config/declare";
-import { ServerlessConfigFunctionTypeVersion1, ServerlessConfigFunctionVersion1 } from "../config/declare/v1";
+import { ServerlessConfigFunctionVersion1 } from "../config/declare/v1";
 import { readServerlessConfig } from "../config/read";
 import { ExecuteOption } from "../declare";
+import { bundleTarget } from "./bundle/bundle-target";
 
 export const bundleRecipe = async (options: ExecuteOption, target: string): Promise<void> => {
 
@@ -30,11 +31,6 @@ export const bundleRecipe = async (options: ExecuteOption, target: string): Prom
     }
 
     for (const functionConfig of targetFunction) {
-
-        switch (functionConfig.type) {
-            case ServerlessConfigFunctionTypeVersion1.AWS_LAMBDA: {
-
-            }
-        }
+        await bundleTarget(options, functionConfig);
     }
 };
