@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Serverless Builder",
   "bin": {
-    "sudoo-serverless-build": "cli"
+    "sudoo-serverless": "cli",
+    "sdsl": "cli"
   },
   "directories": {
     "doc": "docs"
