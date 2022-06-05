@@ -4,10 +4,7 @@
  * @description Declare
  */
 
-export type ServerlessConfigVersion1 = {
-
-    readonly version: 1;
-};
+import { ServerlessConfigVersion1 } from "./declare/v1";
 
 export type ServerlessConfig =
     | ServerlessConfigVersion1;
