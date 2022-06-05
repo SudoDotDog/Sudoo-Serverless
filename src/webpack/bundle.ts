@@ -4,7 +4,7 @@
  * @description Bundle
  */
 
-import * as Webpack from "webpack";
+import Webpack from "webpack";
 import { WebpackConfigOptions } from "./config/declare";
 import { createProductionConfig } from "./config/production";
 
@@ -17,7 +17,9 @@ export const bundleProductionWithWebpack = (options: WebpackConfigOptions): Prom
         reject: (reason: any) => void,
     ) => {
 
-        compiler.run((err: Error, stats: Webpack.Stats) => {
+        console.log(123);
+
+        compiler.run((err: Error | null | undefined, stats: Webpack.Stats | undefined) => {
             if (err) {
                 reject(err);
             } else {

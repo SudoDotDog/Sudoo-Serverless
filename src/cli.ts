@@ -81,6 +81,7 @@ export const execute = async (
             }
         } catch (reason) {
 
+            console.log(reason);
             console.log('[ERROR]');
         }
     }

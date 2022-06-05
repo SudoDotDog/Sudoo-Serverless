@@ -6,9 +6,12 @@
 
 import { ServerlessConfigFunctionTypeVersion1, ServerlessConfigFunctionVersion1 } from "../../config/declare/v1";
 import { ExecuteOption } from "../../declare";
+import { fixOutputPath } from "../../util/output-path";
 import { bundleProductionWithWebpack } from "../../webpack/bundle";
 
 export const bundleTarget = async (options: ExecuteOption, target: ServerlessConfigFunctionVersion1): Promise<void> => {
+
+    const outputPath: string = fixOutputPath(target.outputPath);
 
     switch (target.type) {
         case ServerlessConfigFunctionTypeVersion1.AWS_LAMBDA: {
@@ -16,7 +19,7 @@ export const bundleTarget = async (options: ExecuteOption, target: ServerlessCon
             await bundleProductionWithWebpack({
 
                 sourceFilePath: target.entryPath,
-                targetFolderPath: target.outputPath,
+                targetFolderPath: outputPath,
             });
         }
     }

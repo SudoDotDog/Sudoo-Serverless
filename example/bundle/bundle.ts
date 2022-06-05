@@ -12,6 +12,8 @@ import { execute } from "../../src/cli";
         'node',
         'path',
         'bundle',
-        'config.yaml'
+        'first',
+        '--config',
+        'config.yaml',
     ], __dirname);
 })();
