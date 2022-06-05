@@ -10,7 +10,11 @@ import { readServerlessConfig } from "../config/read";
 import { ExecuteOption } from "../declare";
 import { bundleTarget } from "./bundle/bundle-target";
 
-export const bundleRecipe = async (options: ExecuteOption, target: string): Promise<void> => {
+export const bundleRecipe = async (
+    options: ExecuteOption,
+    base: string,
+    target: string,
+): Promise<void> => {
 
     const config: ServerlessConfig = await readServerlessConfig(options.configPath);
 
@@ -31,6 +35,6 @@ export const bundleRecipe = async (options: ExecuteOption, target: string): Prom
     }
 
     for (const functionConfig of targetFunction) {
-        await bundleTarget(options, functionConfig);
+        await bundleTarget(options, base, functionConfig);
     }
 };

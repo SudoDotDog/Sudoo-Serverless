@@ -17,12 +17,21 @@ export const bundleProductionWithWebpack = (options: WebpackConfigOptions): Prom
         reject: (reason: any) => void,
     ) => {
 
-        console.log(123);
-
         compiler.run((err: Error | null | undefined, stats: Webpack.Stats | undefined) => {
             if (err) {
                 reject(err);
             } else {
+
+                if (typeof stats === 'undefined') {
+                    reject(new Error('Stats is undefined'));
+                    return;
+                }
+
+                if (stats.hasErrors()) {
+                    reject(new Error('Webpack compile has errors'));
+                    console.log(stats.compilation.errors);
+                    return;
+                }
                 resolve();
             }
         });

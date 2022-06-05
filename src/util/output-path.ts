@@ -6,7 +6,7 @@
 
 import * as Path from "path";
 
-export const fixOutputPath = (outputPath?: string): string => {
+export const fixOutputPath = (base: string, outputPath?: string): string => {
 
     if (typeof outputPath === 'string') {
 

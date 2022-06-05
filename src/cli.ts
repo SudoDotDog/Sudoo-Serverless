@@ -77,7 +77,7 @@ export const execute = async (
                         throw new Error('Target not specified');
                     }
 
-                    await bundleRecipe(options, target);
+                    await bundleRecipe(options, base, target);
                     break;
                 }
             }
@@ -85,6 +85,7 @@ export const execute = async (
 
             console.log(reason);
             console.log('[ERROR]');
+            process.exit(255);
         }
     }
 
