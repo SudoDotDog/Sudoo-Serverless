@@ -62,7 +62,12 @@ export const execute = async (args: string[]): Promise<void> => {
 
             switch (command) {
                 case 'bundle': {
-                    await bundleRecipe(options);
+                    let target: string | undefined;
+                    if (commands.length > i + 1) {
+                        i++;
+                        target = commands[i];
+                    }
+                    await bundleRecipe(options, target);
                     break;
                 }
             }
