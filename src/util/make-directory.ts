@@ -4,8 +4,8 @@
  * @description Make Directory
  */
 
+import { pathExists } from "@sudoo/io";
 import * as Path from "path";
-import * as Fs from "fs";
 
 export const splitNestedPath = (path: string): string[] => {
 
@@ -24,36 +24,14 @@ export const splitNestedPath = (path: string): string[] => {
     return stepPaths;
 };
 
-const makeDirectory = (path: string): Promise<void> => {
+const makeDirectory = async (path: string): Promise<void> => {
 
-    return new Promise((
-        resolve: () => void,
-        reject: (reason: any) => void,
-    ) => {
+    const pathExist: boolean = await pathExists(path);
 
-        Fs.stat(path, (error: Error | null, stats: Fs.Stats) => {
-
-            if (error) {
-                reject(error);
-                return;
-            }
-
-            if (stats.isDirectory()) {
-                resolve();
-                return;
-            }
-
-            Fs.mkdir(path, (error: Error | null) => {
-
-                if (error) {
-                    reject(error);
-                    return;
-                }
-                resolve();
-                return;
-            });
-        });
-    });
+    if (pathExist) {
+        return;
+    }
+    await makeDirectory(path);
 };
 
 export const makeNestedDirectory = async (path: string): Promise<void> => {
@@ -63,6 +41,5 @@ export const makeNestedDirectory = async (path: string): Promise<void> => {
     for (const stepPath of stepPaths) {
         await makeDirectory(stepPath);
     }
-
     return;
 };

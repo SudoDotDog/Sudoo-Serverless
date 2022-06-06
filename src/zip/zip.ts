@@ -20,7 +20,10 @@ const spawnZipOutput = (options: ZipOutputOptions): Promise<ZipOutputResult> => 
             '-j',
             options.targetFilePath,
             options.sourceFilePath,
-        ]).on('close', (code: number) => {
+        ]).on('message', (message: string) => {
+
+            console.log(message);
+        }).on('close', (code: number) => {
 
             if (code === 0) {
                 resolve({});

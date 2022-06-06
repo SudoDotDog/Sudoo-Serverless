@@ -20,10 +20,10 @@ export const compressTarget = async (
     const outputPath: string = fixOutputPath(base, target.outputPath);
 
     const outputFilePath: string = Path.join(outputPath, 'index.js');
-    const outputZipPath: string = Path.join(outputPath, target.name + '.zip');
+    const outputZipPath: string = Path.join(outputPath, 'compressed.zip');
 
-    logInfo(`Output Path: ${outputPath}`);
-    logInfo(`Output File Path: ${outputFilePath}`);
+    logInfo(`Source Path: ${outputFilePath}`);
+    logInfo(`Compressed Path: ${outputZipPath}`);
 
     switch (target.type) {
         case ServerlessConfigFunctionTypeVersion1.AWS_LAMBDA: {
