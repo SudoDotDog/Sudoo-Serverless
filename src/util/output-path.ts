@@ -10,7 +10,10 @@ export const fixOutputPath = (base: string, outputPath?: string): string => {
 
     if (typeof outputPath === 'string') {
 
-        return outputPath;
+        if (Path.isAbsolute(outputPath)) {
+            return outputPath;
+        }
+        return Path.resolve(base, outputPath);
     }
 
     const tempPath: string = Path.resolve(`~/.sudoo-serverless/output`);
