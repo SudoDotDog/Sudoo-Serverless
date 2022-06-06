@@ -6,9 +6,18 @@
 
 import { isFile, pathExists, readTextFile } from "@sudoo/io";
 import { parse } from "yaml";
+import { logInfo } from "../util/log";
 import { ServerlessConfig } from "./declare";
 
+const serverlessConfigCache: Record<string, ServerlessConfig> = {};
+
 export const readServerlessConfig = async (path: string): Promise<ServerlessConfig> => {
+
+    if (typeof serverlessConfigCache[path] !== 'undefined') {
+        return serverlessConfigCache[path];
+    }
+
+    logInfo(`Reading Serverless Config: ${path}`);
 
     const pathExist: boolean = await pathExists(path);
 
@@ -24,6 +33,9 @@ export const readServerlessConfig = async (path: string): Promise<ServerlessConf
 
     const rawConfig: string = await readTextFile(path);
     const config: ServerlessConfig = parse(rawConfig);
+
+    serverlessConfigCache[path] = config;
+    logInfo(`Serverless Config Cached: ${path}`);
 
     return config;
 };

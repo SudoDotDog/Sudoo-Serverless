@@ -23,7 +23,6 @@ export const splitNestedPath = (path: string): string[] => {
             ...splitedPath.slice(0, i + 1),
         ));
     }
-
     return stepPaths;
 };
 
