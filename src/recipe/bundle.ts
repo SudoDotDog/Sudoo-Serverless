@@ -17,6 +17,8 @@ export const bundleRecipe = async (
     target: string,
 ): Promise<void> => {
 
+    logInfo(`RUN - Bundle ${target}`);
+
     const config: ServerlessConfig = await readServerlessConfig(options.configPath);
 
     const targetFunction: ServerlessConfigFunctionVersion1[] = [];

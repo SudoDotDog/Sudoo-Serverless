@@ -17,6 +17,8 @@ export const cleanRecipe = async (
     target: string,
 ): Promise<void> => {
 
+    logInfo(`RUN - Clean ${target}`);
+
     const config: ServerlessConfig = await readServerlessConfig(options.configPath);
 
     const targetFunction: ServerlessConfigFunctionVersion1[] = [];

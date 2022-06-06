@@ -9,6 +9,7 @@ import { ServerlessConfigFunctionVersion1 } from "../config/declare/v1";
 import { readServerlessConfig } from "../config/read";
 import { ExecuteOption } from "../declare";
 import { logInfo } from "../util/log";
+import { bundleRecipe } from "./bundle";
 import { compressTarget } from "./compress/compress-target";
 
 export const compressRecipe = async (
@@ -16,6 +17,8 @@ export const compressRecipe = async (
     base: string,
     target: string,
 ): Promise<void> => {
+
+    logInfo(`RUN - Compress ${target}`);
 
     const config: ServerlessConfig = await readServerlessConfig(options.configPath);
 
@@ -34,6 +37,10 @@ export const compressRecipe = async (
 
     if (targetFunction.length === 0) {
         throw new Error(`Target ${target} does not exist`);
+    }
+
+    if (!options.only) {
+        await bundleRecipe(options, base, target);
     }
 
     for (const functionConfig of targetFunction) {

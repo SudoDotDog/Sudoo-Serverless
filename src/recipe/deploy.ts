@@ -17,6 +17,8 @@ export const deployRecipe = async (
     target: string,
 ): Promise<void> => {
 
+    logInfo(`RUN - Deploy ${target}`);
+
     const config: ServerlessConfig = await readServerlessConfig(options.configPath);
 
     const targetFunction: ServerlessConfigFunctionVersion1[] = [];

@@ -1,0 +1,7 @@
+version: 1
+functions:
+  - name: first
+    type: aws-lambda
+    entryPath: test.ts
+    outputPath: dist
+    functionName: aws-function-name

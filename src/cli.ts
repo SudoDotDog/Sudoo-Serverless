@@ -86,8 +86,6 @@ export const execute = async (
                     if (typeof target === 'undefined') {
                         throw new Error('Target not specified');
                     }
-
-                    logInfo(`RUN - Bundle ${target}`);
                     await bundleRecipe(options, base, target);
                     break;
                 }
@@ -101,8 +99,6 @@ export const execute = async (
                     if (typeof target === 'undefined') {
                         throw new Error('Target not specified');
                     }
-
-                    logInfo(`RUN - Clean ${target}`);
                     await cleanRecipe(options, base, target);
                     break;
                 }
@@ -116,8 +112,6 @@ export const execute = async (
                     if (typeof target === 'undefined') {
                         throw new Error('Target not specified');
                     }
-
-                    logInfo(`RUN - Compress ${target}`);
                     await compressRecipe(options, base, target);
                     break;
                 }
@@ -131,8 +125,6 @@ export const execute = async (
                     if (typeof target === 'undefined') {
                         throw new Error('Target not specified');
                     }
-
-                    logInfo(`RUN - Deploy ${target}`);
                     await deployRecipe(options, base, target);
                     break;
                 }

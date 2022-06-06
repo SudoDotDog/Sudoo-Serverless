@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace Example
- * @description Compress
+ * @description Deploy
  */
 
 import { execute } from "../../src/cli";
@@ -13,7 +13,8 @@ import { execute } from "../../src/cli";
         'path',
         '--config',
         'config.yaml',
-        'compress',
+        '--dry-run',
+        'deploy',
         'first',
     ], __dirname);
 })();
