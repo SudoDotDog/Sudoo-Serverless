@@ -23,6 +23,7 @@ export const execute = async (
     const options: ExecuteOption = {
 
         only: false,
+        dryRun: false,
 
         configPath: currentConfigPath,
     };
@@ -54,6 +55,12 @@ export const execute = async (
                         );
                         options.configPath = targetConfigPath;
                     }
+                    break;
+                }
+                case '--dry-run': {
+
+                    logInfo(`OPTION - Dry Run`);
+                    options.dryRun = true;
                     break;
                 }
                 case '--only': {

@@ -7,6 +7,7 @@
 export type ExecuteOption = {
 
     only: boolean;
+    dryRun: boolean;
 
     configPath: string;
 };
