@@ -78,6 +78,7 @@ export const execute = async (
                         throw new Error('Target not specified');
                     }
 
+                    logInfo(`RUN - Bundle ${target}`);
                     await bundleRecipe(options, base, target);
                     break;
                 }
@@ -92,6 +93,7 @@ export const execute = async (
                         throw new Error('Target not specified');
                     }
 
+                    logInfo(`RUN - Compress ${target}`);
                     await compressRecipe(options, base, target);
                     break;
                 }
