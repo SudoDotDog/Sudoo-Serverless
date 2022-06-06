@@ -17,10 +17,5 @@ export const deployTarget = async (
 
     logInfo(`Deploy Target: ${target.name}`);
 
-    if (options.dryRun) {
-        logInfo('Dry Run Enabled, Skip Deploy');
-        return;
-    }
-
     await deployAWSLambda(options, base, target);
 };
