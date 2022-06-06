@@ -8,6 +8,7 @@ import { ServerlessConfig } from "../config/declare";
 import { ServerlessConfigFunctionVersion1 } from "../config/declare/v1";
 import { readServerlessConfig } from "../config/read";
 import { ExecuteOption } from "../declare";
+import { logInfo } from "../util/log";
 import { bundleTarget } from "./bundle/bundle-target";
 
 export const bundleRecipe = async (
@@ -21,6 +22,7 @@ export const bundleRecipe = async (
     const targetFunction: ServerlessConfigFunctionVersion1[] = [];
 
     if (target === '--all') {
+        logInfo('Bundling All Functions');
         targetFunction.push(...config.functions);
     }
 

@@ -8,6 +8,7 @@ import { ServerlessConfig } from "../config/declare";
 import { ServerlessConfigFunctionVersion1 } from "../config/declare/v1";
 import { readServerlessConfig } from "../config/read";
 import { ExecuteOption } from "../declare";
+import { logInfo } from "../util/log";
 import { compressTarget } from "./compress/compress-target";
 
 export const compressRecipe = async (
@@ -21,6 +22,7 @@ export const compressRecipe = async (
     const targetFunction: ServerlessConfigFunctionVersion1[] = [];
 
     if (target === '--all') {
+        logInfo('Compressing All Functions');
         targetFunction.push(...config.functions);
     }
 

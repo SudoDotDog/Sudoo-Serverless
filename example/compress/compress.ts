@@ -13,7 +13,7 @@ import { execute } from "../../src/cli";
         'path',
         '--config',
         'config.yaml',
-        'bundle',
+        'clean',
         'first',
         'compress',
         'first',

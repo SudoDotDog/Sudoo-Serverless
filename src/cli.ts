@@ -7,6 +7,7 @@
 import * as Path from "path";
 import { ExecuteOption } from "./declare";
 import { bundleRecipe } from "./recipe/bundle";
+import { cleanRecipe } from "./recipe/clean";
 import { compressRecipe } from "./recipe/compress";
 import { logInfo } from "./util/log";
 
@@ -80,6 +81,21 @@ export const execute = async (
 
                     logInfo(`RUN - Bundle ${target}`);
                     await bundleRecipe(options, base, target);
+                    break;
+                }
+                case 'clean': {
+                    let target: string | undefined;
+                    if (commands.length > i + 1) {
+                        i++;
+                        target = commands[i];
+                    }
+
+                    if (typeof target === 'undefined') {
+                        throw new Error('Target not specified');
+                    }
+
+                    logInfo(`RUN - Clean ${target}`);
+                    await cleanRecipe(options, base, target);
                     break;
                 }
                 case 'compress': {

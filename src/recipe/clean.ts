@@ -8,7 +8,8 @@ import { ServerlessConfig } from "../config/declare";
 import { ServerlessConfigFunctionVersion1 } from "../config/declare/v1";
 import { readServerlessConfig } from "../config/read";
 import { ExecuteOption } from "../declare";
-import { bundleTarget } from "./bundle/bundle-target";
+import { logInfo } from "../util/log";
+import { cleanTarget } from "./clean/clean-target";
 
 export const cleanRecipe = async (
     options: ExecuteOption,
@@ -21,6 +22,7 @@ export const cleanRecipe = async (
     const targetFunction: ServerlessConfigFunctionVersion1[] = [];
 
     if (target === '--all') {
+        logInfo('Cleaning All Functions');
         targetFunction.push(...config.functions);
     }
 
@@ -35,6 +37,6 @@ export const cleanRecipe = async (
     }
 
     for (const functionConfig of targetFunction) {
-        await bundleTarget(options, base, functionConfig);
+        await cleanTarget(options, base, functionConfig);
     }
 };
