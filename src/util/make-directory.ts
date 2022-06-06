@@ -31,7 +31,7 @@ const makeDirectory = (path: string): Promise<void> => {
         reject: (reason: any) => void,
     ) => {
 
-        Fs.stat(path, (error: Error, stats: Fs.Stats) => {
+        Fs.stat(path, (error: Error | null, stats: Fs.Stats) => {
 
             if (error) {
                 reject(error);
@@ -43,7 +43,7 @@ const makeDirectory = (path: string): Promise<void> => {
                 return;
             }
 
-            Fs.mkdir(path, (error: Error) => {
+            Fs.mkdir(path, (error: Error | null) => {
 
                 if (error) {
                     reject(error);

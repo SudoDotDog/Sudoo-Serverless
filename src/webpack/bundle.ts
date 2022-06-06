@@ -4,7 +4,7 @@
  * @description Bundle
  */
 
-import Webpack from "webpack";
+import * as Webpack from "webpack";
 import { WebpackConfigOptions } from "./config/declare";
 import { createProductionConfig } from "./config/production";
 
