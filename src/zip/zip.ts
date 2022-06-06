@@ -29,12 +29,16 @@ const spawnZipOutput = (options: ZipOutputOptions): Promise<ZipOutputResult> => 
         writeStream.on('close', () => {
             logInfo(`Compressed: ${options.targetFilePath}`);
             logInfo(`Compressed Size: ${archiver.pointer()}`);
-            resolve({});
+            resolve({
+                succeed: true,
+            });
         });
 
         writeStream.on('end', () => {
             logInfo(`Compress Drained: ${options.targetFilePath}`);
-            resolve({});
+            resolve({
+                succeed: false,
+            });
         });
 
         archiver.on('error', (error: any) => {

@@ -131,9 +131,11 @@ export const execute = async (
             }
         } catch (reason) {
 
+            const ERROR_EXIT_CODE: number = 1;
+
             console.log(reason);
             console.log('[ERROR]');
-            process.exit(255);
+            process.exit(ERROR_EXIT_CODE);
         }
     }
 

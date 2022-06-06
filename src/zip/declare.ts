@@ -12,4 +12,5 @@ export type ZipOutputOptions = {
 
 export type ZipOutputResult = {
 
+    readonly succeed: boolean;
 };

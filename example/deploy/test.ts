@@ -1,3 +1,3 @@
-export const handler = () => {
+export const handler = (): number => {
     return 1;
 };
