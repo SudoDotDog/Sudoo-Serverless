@@ -4,7 +4,7 @@
  * @description Make Directory
  */
 
-import { pathExists } from "@sudoo/io";
+import { attemptMarkDir } from "@sudoo/io";
 import * as Path from "path";
 
 export const splitNestedPath = (path: string): string[] => {
@@ -18,20 +18,13 @@ export const splitNestedPath = (path: string): string[] => {
 
     const stepPaths: string[] = [];
     for (let i = 0; i < splitedPath.length; i++) {
-        stepPaths.push(Path.join(...splitedPath.slice(0, i + 1)));
+        stepPaths.push(Path.join(
+            '/',
+            ...splitedPath.slice(0, i + 1),
+        ));
     }
 
     return stepPaths;
-};
-
-const makeDirectory = async (path: string): Promise<void> => {
-
-    const pathExist: boolean = await pathExists(path);
-
-    if (pathExist) {
-        return;
-    }
-    await makeDirectory(path);
 };
 
 export const makeNestedDirectory = async (path: string): Promise<void> => {
@@ -39,7 +32,7 @@ export const makeNestedDirectory = async (path: string): Promise<void> => {
     const stepPaths: string[] = splitNestedPath(path);
 
     for (const stepPath of stepPaths) {
-        await makeDirectory(stepPath);
+        await attemptMarkDir(stepPath);
     }
     return;
 };
