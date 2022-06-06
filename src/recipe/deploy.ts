@@ -9,6 +9,7 @@ import { ServerlessConfigFunctionVersion1 } from "../config/declare/v1";
 import { readServerlessConfig } from "../config/read";
 import { ExecuteOption } from "../declare";
 import { logInfo } from "../util/log";
+import { compressRecipe } from "./compress";
 import { deployTarget } from "./deploy/deploy-target";
 
 export const deployRecipe = async (
@@ -38,7 +39,14 @@ export const deployRecipe = async (
         throw new Error(`Target ${target} does not exist`);
     }
 
+    if (!options.only) {
+        logInfo('Depend On - Compress');
+        await compressRecipe(options, base, target);
+    }
+
     for (const functionConfig of targetFunction) {
         await deployTarget(options, base, functionConfig);
     }
+
+    logInfo(`Deploy ${target} Done`);
 };

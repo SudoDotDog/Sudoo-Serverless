@@ -41,4 +41,6 @@ export const cleanRecipe = async (
     for (const functionConfig of targetFunction) {
         await cleanTarget(options, base, functionConfig);
     }
+
+    logInfo(`Clean ${target} Done`);
 };

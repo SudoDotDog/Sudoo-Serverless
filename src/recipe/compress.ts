@@ -40,10 +40,13 @@ export const compressRecipe = async (
     }
 
     if (!options.only) {
+        logInfo('Depend On - Bundle');
         await bundleRecipe(options, base, target);
     }
 
     for (const functionConfig of targetFunction) {
         await compressTarget(options, base, functionConfig);
     }
+
+    logInfo(`Compress ${target} Done`);
 };

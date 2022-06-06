@@ -41,4 +41,6 @@ export const bundleRecipe = async (
     for (const functionConfig of targetFunction) {
         await bundleTarget(options, base, functionConfig);
     }
+
+    logInfo(`Bundle ${target} Done`);
 };
