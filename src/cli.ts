@@ -37,6 +37,8 @@ export const execute = async (
         return;
     }
 
+    let commandMatched: boolean = false;
+
     for (let i = 0; i < commands.length; i++) {
 
         const command: string = commands[i];
@@ -78,6 +80,7 @@ export const execute = async (
 
             switch (command) {
                 case 'bundle': {
+                    commandMatched = true;
                     let target: string | undefined;
                     if (commands.length > i + 1) {
                         i++;
@@ -91,6 +94,7 @@ export const execute = async (
                     break;
                 }
                 case 'clean': {
+                    commandMatched = true;
                     let target: string | undefined;
                     if (commands.length > i + 1) {
                         i++;
@@ -104,6 +108,7 @@ export const execute = async (
                     break;
                 }
                 case 'compress': {
+                    commandMatched = true;
                     let target: string | undefined;
                     if (commands.length > i + 1) {
                         i++;
@@ -117,6 +122,7 @@ export const execute = async (
                     break;
                 }
                 case 'deploy': {
+                    commandMatched = true;
                     let target: string | undefined;
                     if (commands.length > i + 1) {
                         i++;
@@ -141,6 +147,10 @@ export const execute = async (
             console.log('[ERROR]');
             process.exit(ERROR_EXIT_CODE);
         }
+    }
+
+    if (!commandMatched) {
+        console.log('[INFO] No recipe specified');
     }
 
     console.log('[COMPLETE] Finished');
