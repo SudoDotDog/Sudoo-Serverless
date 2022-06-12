@@ -33,6 +33,7 @@ export const execute = async (
     if (commands.length === 0) {
 
         console.log('[COMPLETE] No command specified');
+        console.log('[COMPLETE] Finished');
         return;
     }
 
@@ -127,6 +128,9 @@ export const execute = async (
                     }
                     await deployRecipe(options, base, target);
                     break;
+                }
+                default: {
+                    throw new Error(`Unrecognized Command ${command}`);
                 }
             }
         } catch (reason) {
