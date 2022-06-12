@@ -36,7 +36,7 @@ export const deployAWSLambda = (
             target.functionName,
             '--no-cli-pager',
             '--zip-file',
-            `fileb:/${outputZipPath}`,
+            `fileb://${outputZipPath}`,
         ];
 
         if (options.dryRun) {
